@@ -1,0 +1,17 @@
+---
+interface Props {
+  color: 'blue' | 'orange' | 'yellow' | 'green' | 'sand';
+  title: string;
+  subtitle?: string;
+}
+
+const { color, title, subtitle } = Astro.props;
+const colorClass = `kv-${color}`;
+---
+
+<section class={`kv-banner ${colorClass}`}>
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-12 md:py-14">
+    <h2 class="text-3xl font-bold mb-1">{title}</h2>
+    {subtitle && <p class="text-white/90 text-sm">{subtitle}</p>}
+  </div>
+</section>

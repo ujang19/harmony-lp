@@ -1,0 +1,61 @@
+---
+---
+
+<section id="raise" class="bg-white py-16 lg:py-20">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6">
+    <h2 class="text-3xl font-bold mb-6">Selection Criteria — R.A.I.S.E.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="space-y-3">
+        <div class="border rounded-2xl overflow-hidden">
+          <button class="w-full text-left px-5 py-4 flex items-center justify-between accordion-btn" aria-expanded="false">
+            <span class="font-semibold">Relevance</span>
+            <svg class="chev h-5 w-5 text-gray-600 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden px-5 pb-5 text-sm text-gray-700">Addresses current realities in fostering harmony (e.g., dialogue programmes, joint projects, platforms for understanding).</div>
+        </div>
+        <div class="border rounded-2xl overflow-hidden">
+          <button class="w-full text-left px-5 py-4 flex items-center justify-between accordion-btn" aria-expanded="false">
+            <span class="font-semibold">Align</span>
+            <svg class="chev h-5 w-5 text-gray-600 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden px-5 pb-5 text-sm text-gray-700">Aligns with People, Planet, Prosperity, Peace, Partnership; promotes inclusivity, equal opportunity, and a sense of belonging.</div>
+        </div>
+        <div class="border rounded-2xl overflow-hidden">
+          <button class="w-full text-left px-5 py-4 flex items-center justify-between accordion-btn" aria-expanded="false">
+            <span class="font-semibold">Innovation</span>
+            <svg class="chev h-5 w-5 text-gray-600 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden px-5 pb-5 text-sm text-gray-700">Original approaches or concepts (e.g., use of arts, technology, or unique community‑building strategies).</div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="border rounded-2xl overflow-hidden">
+          <button class="w-full text-left px-5 py-4 flex items-center justify-between accordion-btn" aria-expanded="false">
+            <span class="font-semibold">Significance</span>
+            <svg class="chev h-5 w-5 text-gray-600 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden px-5 pb-5 text-sm text-gray-700">Positive, sustained impact within the local context or beyond.</div>
+        </div>
+        <div class="border rounded-2xl overflow-hidden">
+          <button class="w-full text-left px-5 py-4 flex items-center justify-between accordion-btn" aria-expanded="false">
+            <span class="font-semibold">Elevate</span>
+            <svg class="chev h-5 w-5 text-gray-600 transition-transform" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+          </button>
+          <div class="hidden px-5 pb-5 text-sm text-gray-700">Improves people’s lives by encouraging broader perspectives and deeper understanding (e.g., storytelling, cultural exchange, educational initiatives).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.parentElement.nextElementSibling || btn.parentElement.querySelector(':scope + div');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      if (panel) panel.classList.toggle('hidden');
+    });
+  });
+</script>

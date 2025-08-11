@@ -1,0 +1,54 @@
+---
+---
+
+<header class="bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 fixed w-full z-50 border-b border-brand-off/40">
+  <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 lg:px-6">
+    <div class="flex items-center gap-3">
+      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class="h-9 w-auto"/>
+      <span class="font-semibold">Harmony in Diversity Award</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="#about" class="hover:text-brand-blue">About</a>
+      <a href="#celebrates" class="hover:text-brand-blue">What We Celebrate</a>
+      <a href="#eligibility" class="hover:text-brand-blue">Eligibility</a>
+      <a href="#raise" class="hover:text-brand-blue">RAISE Criteria</a>
+      <a href="#participate" class="hover:text-brand-blue">How to Participate</a>
+      <a href="#timeline" class="hover:text-brand-blue">Timeline</a>
+      <a href="#award" class="hover:text-brand-blue">Award & Recognition</a>
+      <a href="#judges" class="hover:text-brand-blue">Judges & Patron</a>
+      <a href="#trophy" class="hover:text-brand-blue">Trophy</a>
+      <a href="#partners" class="hover:text-brand-blue">Partners</a>
+      <a href="#faq" class="hover:text-brand-blue">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#nominate" class="hidden md:inline-block bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-brand-blueDark focus:outline-none focus:ring-2 focus:ring-brand-blue">Submit Nomination</a>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-brand-off/70" aria-label="Open Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobileNav" class="md:hidden hidden border-t bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-3 grid gap-2 text-sm">
+      <a href="#about" class="py-2">About</a>
+      <a href="#celebrates" class="py-2">What We Celebrate</a>
+      <a href="#eligibility" class="py-2">Eligibility</a>
+      <a href="#raise" class="py-2">RAISE Criteria</a>
+      <a href="#participate" class="py-2">How to Participate</a>
+      <a href="#timeline" class="py-2">Timeline</a>
+      <a href="#award" class="py-2">Award & Recognition</a>
+      <a href="#judges" class="py-2">Judges & Patron</a>
+      <a href="#trophy" class="py-2">Trophy</a>
+      <a href="#partners" class="py-2">Partners</a>
+      <a href="#faq" class="py-2">FAQ</a>
+      <a href="#nominate" class="mt-2 bg-brand-blue text-white px-4 py-2 rounded-lg text-center">Submit Nomination</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (btn) btn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+</script>
