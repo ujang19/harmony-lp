@@ -142,3 +142,20 @@ html.js-anim .reveal { opacity: 0; transform: translateY(6px); }
 
 /* Shimmer overlay helper (base safety) */
 .shimmer { display: block; border-radius: inherit; }
+
+
+[data-shimmer] {
+  position: relative;
+  overflow: clip;
+  contain: layout paint;
+  max-width: 100%;
+}
+/* fallback untuk browser yang belum support overflow: clip */
+@supports not (overflow: clip) {
+  [data-shimmer] { overflow: hidden; }
+}
+
+.shimmer {
+  inset: 0;                 /* dari sebelumnya -10% */
+  transform: translate(0);  /* hindari translate X yang bikin melebar */
+}
