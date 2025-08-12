@@ -1,5 +1,6 @@
 ---
 import KvBanner from './KvBanner.astro';
+import { Image } from 'astro:assets';
 import { readdir } from 'fs/promises';
 import path from 'path';
 
@@ -29,15 +30,18 @@ try {
           {allImages.map((image, index) => (
             <div class="gallery-item" data-lightbox="launch" data-full-src={`/assets/gallery/${image}`}>
               <div class="gallery-thumb-wrapper">
-                <img 
-                  loading="lazy"
-                  data-src={`/assets/gallery/${image}`}
+                <Image
+                  src={`/assets/gallery/${image}`}
                   alt={`Launch Event photo ${index + 1}`}
-                  class="gallery-thumb gallery-lazy"
+                  widths={[200, 400, 600]}
+                  sizes="(max-width: 768px) 45vw, 200px"
+                  loading="lazy"
                   decoding="async"
-                  width="200"
-                  height="144"
-                  fetchpriority={index < 3 ? "high" : "low"}
+                  width={200}
+                  height={144}
+                  fetchpriority={index < 3 ? 'high' : 'low'}
+                  class="gallery-thumb"
+                  style="width:100%;height:100%;object-fit:cover;object-position:center;aspect-ratio:4/3;"
                 />
                 <div class="gallery-overlay">
                   <svg class="gallery-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -229,54 +233,7 @@ try {
     }
   })();
 
-  // Lazy load gallery thumbnails only when near viewport
-  (() => {
-    const section = document.getElementById('gallery');
-    if (!section) return;
 
-    const lazyImgs = new Set();
-    const collectLazy = () => {
-      section.querySelectorAll('img.gallery-lazy[data-src]').forEach(img => lazyImgs.add(img));
-    };
-    collectLazy();
-
-    const loadImg = (img) => {
-      if (!img || img.dataset.loaded) return;
-      const src = img.getAttribute('data-src');
-      if (!src) return;
-      img.src = src;
-      img.dataset.loaded = '1';
-      img.removeAttribute('data-src');
-      img.classList.remove('gallery-lazy');
-    };
-
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        const img = entry.target;
-        if (entry.isIntersecting) {
-          loadImg(img);
-          obs.unobserve(img);
-          lazyImgs.delete(img);
-        }
-      });
-    }, { rootMargin: '200px 0px', threshold: 0.01 });
-
-    lazyImgs.forEach(img => io.observe(img));
-
-    // In case of dynamic updates
-    const mo = new MutationObserver(() => {
-      collectLazy();
-      lazyImgs.forEach(img => io.observe(img));
-    });
-    mo.observe(section, { childList: true, subtree: true });
-
-    // Cleanup on page hide
-    window.addEventListener('pagehide', () => {
-      io.disconnect();
-      mo.disconnect();
-      lazyImgs.clear();
-    });
-  })();
 </script>
 
 <style>
@@ -294,7 +251,7 @@ try {
     border-radius: 0.5rem;
     overflow: hidden;
     contain: layout style;
-    content-visibility: auto;
+    /* content-visibility: auto; */
     contain-intrinsic-size: 200px 150px;
   }
   
@@ -324,6 +281,7 @@ try {
     opacity: 0;
     transition: opacity 0.15s ease;
     pointer-events: none;
+    will-change: opacity;
   }
   
   .gallery-item:hover .gallery-overlay {
