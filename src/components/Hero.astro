@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets'
+import hero from '../assets/hero.jpg'
 ---
 
 <section class="pt-28 lg:pt-32 bg-brand-off motif-bg" data-hero>
@@ -13,7 +15,7 @@
       <p class="text-sm text-gray-700">Submissions are accepted in English only and must include an impact write‑up with supporting materials.</p>
     </div>
     <div class="relative" data-parallax="28">
-      <img src="/assets/Photo 1_Harmony in Diversity (Credit_Temasek Foundation)web.jpg" alt="Harmony in Diversity Award — stage visual with dove motif" class="rounded-2xl shadow-soft w-full object-cover reveal" loading="eager" decoding="async" fetchpriority="high"/>
+      <Image src={hero} alt="Harmony in Diversity Award — stage visual with dove motif" class="rounded-2xl shadow-soft w-full object-cover reveal" loading="eager" decoding="async" fetchpriority="high" widths={[600]} sizes="600px" />
       <div class="absolute -bottom-3 -right-3 bg-white shadow-soft rounded-xl px-4 py-2 text-xs">Partnered by <strong>Temasek Foundation</strong> & <strong>5P Global Movement</strong></div>
     </div>
   </div>
