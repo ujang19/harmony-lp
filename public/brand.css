@@ -17,6 +17,22 @@
   }
 }
 
+/* === Color definitions === */
+:root {
+  --brand-blue: #4d91c6;
+  --brand-blue-hover: #3d749e;
+  --brand-green: #6fbf73;
+  --brand-green-hover: #58985c;
+  --brand-sand: #d8ae73;
+  --brand-sand-hover: #b79361;
+  --brand-orange: #e87d50;
+  --brand-orange-hover: #c56a44;
+  --brand-yellow: #edb332;
+  --brand-yellow-hover: #c9982a;
+  --brand-off: #f5f0e6;
+  --brand-ink: #0f0f0f;
+}
+
 /* === KV color banner styles (match examples you shared) === */
 .kv-banner {
   position: relative;
@@ -118,4 +134,141 @@
     radial-gradient(circle at 75% 60%, rgba(255,255,255,0.28) 0 8%, transparent 9%),
     radial-gradient(circle at 45% 80%, rgba(255,255,255,0.22) 0 7%, transparent 8%);
   background-size: 240px 240px, 260px 260px, 220px 220px;
+}
+
+/* Hover states for buttons and links */
+.bg-brand-blue {
+  background-color: #4d91c6;
+}
+
+.bg-brand-blue:hover {
+  background-color: #3d749e;
+}
+
+.bg-brand-green {
+  background-color: #6fbf73;
+}
+
+.bg-brand-green:hover {
+  background-color: #58985c;
+}
+
+.bg-brand-sand {
+  background-color: #d8ae73;
+}
+
+.bg-brand-sand:hover {
+  background-color: #b79361;
+}
+
+.bg-brand-orange {
+  background-color: #e87d50;
+}
+
+.bg-brand-orange:hover {
+  background-color: #c56a44;
+}
+
+.bg-brand-yellow {
+  background-color: #edb332;
+}
+
+.bg-brand-yellow:hover {
+  background-color: #c9982a;
+}
+
+.text-brand-blue {
+  color: #4d91c6;
+}
+
+.text-brand-green {
+  color: #6fbf73;
+}
+
+.text-brand-sand {
+  color: #d8ae73;
+}
+
+.text-brand-orange {
+  color: #e87d50;
+}
+
+.text-brand-yellow {
+  color: #edb332;
+}
+
+.text-brand-off {
+  color: #f5f0e6;
+}
+
+.text-brand-ink {
+  color: #0f0f0f;
+}
+
+.bg-brand-off {
+  background-color: #f5f0e6;
+}
+
+/* Card styles with radius and shadow */
+.colorful-card {
+  border-radius: 1.25rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  background-color: white;
+  border: 1px solid var(--brand-off);
+}
+
+/* Section background styles */
+.bg-blue-pattern {
+  background-color: #4d91c6;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08), rgba(255,255,255,.08)),
+    url('/assets/HID-GRAPHIC-02-LANGUAGE.png');
+  background-repeat: no-repeat;
+  background-size: auto, 220px;
+  background-position: 0 0, 8% 75%;
+  color: white;
+}
+
+.bg-orange-pattern {
+  background-color: #e87d50;
+  background-image:
+    linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)),
+    url('/assets/HID-GRAPHIC-01-ETHNICITY.png');
+  background-repeat: no-repeat;
+  background-size: auto, 220px;
+  background-position: 0 0, 12% 78%;
+  color: white;
+}
+
+.bg-yellow-pattern {
+  background-color: #edb332;
+  background-image:
+    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.12)),
+    url('/assets/HID-GRAPHIC-03-SOCIAL-FABRIC.png');
+  background-repeat: no-repeat;
+  background-size: auto, 210px;
+  background-position: 0 0, 10% 80%;
+  color: white;
+}
+
+.bg-green-pattern {
+  background-color: #6fbf73;
+  background-image:
+    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.12)),
+    url('/assets/HID-GRAPHIC-04-RELIGION.png');
+  background-repeat: no-repeat;
+  background-size: auto, 210px;
+  background-position: 0 0, 12% 78%;
+  color: white;
+}
+
+.bg-sand-pattern {
+  background-color: #d8ae73;
+  background-image:
+    linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)),
+    url('/assets/HID-GRAPHIC-05-CULTURE.png');
+  background-repeat: no-repeat;
+  background-size: auto, 220px;
+  background-position: 0 0, 10% 78%;
+  color: white;
 }
