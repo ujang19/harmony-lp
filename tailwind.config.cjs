@@ -7,12 +7,16 @@ module.exports = {
         brand: {
           blue: '#4d91c6',
           blueDark: '#3d749e',
+          green: '#6fbf73',
+          greenDark: '#58985c',
+          sand: '#d8ae73',
+          sandDark: '#b79361',
+          orange: '#e87d50',
+          orangeDark: '#c56a44',
+          yellow: '#edb332',
+          yellowDark: '#c9982a',
           off: '#f5f0e6',
           ink: '#0f0f0f',
-          green: '#6fbf73',
-          sand: '#d8ae73',
-          orange: '#e87d50',
-          yellow: '#edb332',
         }
       },
       boxShadow: {

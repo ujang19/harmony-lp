@@ -1,67 +1,108 @@
-<section id="judges" class="bg-white py-16 lg:py-20">
-  <div class="max-w-7xl mx-auto px-4 lg:px-6">
-    <h2 class="text-3xl font-bold mb-6">Meet the Patron & Judges</h2>
+---
+import KvBanner from './KvBanner.astro';
+---
 
-    <!-- ONE unified grid container -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Patron (same size as others). If you want it featured, add: lg:col-span-3 -->
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img
-          src="/assets/sample-portrait.jpg"
-          alt="Patron portrait"
-          class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-          onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4">
-          <div class="font-semibold">Madam Halimah Yacob</div>
-          <div class="text-sm text-gray-700">Patron of the Harmony in Diversity Award; former President of Singapore; Chancellor, Singapore University of Social Sciences.</div>
+<section id="judges" class="pt-0">
+  <KvBanner color="sand" title="Meet the Patron & Judges" />
+  <div class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 overlap-wrap pb-16">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Patron: Madam Halimah Yacob -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/Madam Halimah Yacob.jpg" alt="Madam Halimah Yacob" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">Madam Halimah Yacob</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-sand text-white">Patron</span>
+              </div>
+              <p class="text-sm text-gray-700">Former President of Singapore; Chancellor, Singapore University of Social Sciences</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Judge: HRH Tunku Tun Aminah -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/Tunku Tun Aminah.jpg" alt="HRH Tunku Tun Aminah" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">HRH Tunku Tun Aminah</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-blue text-white">Judge</span>
+              </div>
+              <p class="text-sm text-gray-700">Non-Independent Non-Executive Chairman, Berjaya Corporation Berhad</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Judge: Ms Retno L.P. Marsudi -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/Ibu Retno.jpg" alt="Ms Retno L.P. Marsudi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">Ms Retno L.P. Marsudi</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-green text-white">Judge</span>
+              </div>
+              <p class="text-sm text-gray-700">Former Minister of Foreign Affairs, Indonesia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Judge: Mayor Joy Belmonte -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/Mayor Joy.jpg" alt="Mayor Joy Belmonte" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">Mayor Joy Belmonte</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-blue text-white">Judge</span>
+              </div>
+              <p class="text-sm text-gray-700">Mayor of Quezon City, Philippines</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Judge: Mr Panote Sirivadhanabhakdi -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/5. Khun Panote.jpg" alt="Mr Panote Sirivadhanabhakdi" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">Mr Panote Sirivadhanabhakdi</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-green text-white">Judge</span>
+              </div>
+              <p class="text-sm text-gray-700">Group CEO, Frasers Property Limited</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Judge: Mr Ng Boon Heong -->
+        <div class="colorful-card p-6 group">
+          <div class="flex flex-col gap-4">
+            <div class="w-40 md:w-44 lg:w-48 [aspect-ratio:7/10] overflow-hidden rounded-2xl mx-auto">
+              <img src="/assets/profile/boong.jpg" alt="Mr Ng Boon Heong" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+            </div>
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <h3 class="font-semibold">Mr Ng Boon Heong</h3>
+                <span class="text-[11px] leading-none px-2 py-1 rounded-full bg-brand-blue text-white">Judge</span>
+              </div>
+              <p class="text-sm text-gray-700">Executive Director & CEO, Temasek Foundation</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Judges -->
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img src="/assets/sample-portrait.jpg" alt="Judge portrait" class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4"><div class="font-semibold">HRH Tunku Tun Aminah</div><div class="text-sm text-gray-700">Non‑Independent Non‑Executive Chairman, Berjaya Corporation Berhad.</div></div>
-      </div>
-
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img src="/assets/sample-portrait.jpg" alt="Judge portrait" class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4"><div class="font-semibold">Ms Retno L.P. Marsudi</div><div class="text-sm text-gray-700">Former Minister of Foreign Affairs, Indonesia.</div></div>
-      </div>
-
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img src="/assets/sample-portrait.jpg" alt="Judge portrait" class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4"><div class="font-semibold">Mayor Joy Belmonte</div><div class="text-sm text-gray-700">Mayor of Quezon City, Philippines.</div></div>
-      </div>
-
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img src="/assets/sample-portrait.jpg" alt="Judge portrait" class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4"><div class="font-semibold">Mr Panote Sirivadhanabhakdi</div><div class="text-sm text-gray-700">Group Chief Executive Officer, Frasers Property Limited.</div></div>
-      </div>
-
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden">
-        <img src="/assets/sample-portrait.jpg" alt="Judge portrait" class="w-full aspect-square object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'512\' height=\'512\'><rect width=\'100%\' height=\'100%\' fill=\'%23e5e7eb\'/><text x=\'50%\' y=\'52%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Arial\' font-size=\'28\' fill=\'%236b7280\'>Photo</text></svg>'"/>
-        <div class="p-4"><div class="font-semibold">Mr Ng Boon Heong</div><div class="text-sm text-gray-700">Executive Director & Chief Executive Officer, Temasek Foundation.</div></div>
-      </div>
-
-      <!-- Optional: add placeholders so the grid balances to full rows of 3 on lg -->
-      <!--
-      <div class="invisible sm:visible lg:visible"></div>
-      <div class="invisible sm:visible lg:visible"></div>
-      -->
     </div>
-
-    <!-- Variant: FEATURE the Patron across the row (uncomment to use)
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mt-12">
-      <div class="group bg-white border border-gray-200 rounded-2xl overflow-hidden lg:col-span-3">
-        ... same patron card content ...
-      </div>
-      ... judges as above ...
-    </div>
-    -->
   </div>
 </section>

@@ -20,15 +20,15 @@
 /* === Color definitions === */
 :root {
   --brand-blue: #4d91c6;
-  --brand-blue-hover: #3d749e;
+  --brand-blue-dark: #3d749e;
   --brand-green: #6fbf73;
-  --brand-green-hover: #58985c;
+  --brand-green-dark: #58985c;
   --brand-sand: #d8ae73;
-  --brand-sand-hover: #b79361;
+  --brand-sand-dark: #b79361;
   --brand-orange: #e87d50;
-  --brand-orange-hover: #c56a44;
+  --brand-orange-dark: #c56a44;
   --brand-yellow: #edb332;
-  --brand-yellow-hover: #c9982a;
+  --brand-yellow-dark: #c9982a;
   --brand-off: #f5f0e6;
   --brand-ink: #0f0f0f;
 }
@@ -45,30 +45,63 @@
   color: inherit;
 }
 
+/* Avoid double smoothing and reduce repaint work */
+html { scroll-behavior: auto; }
+.sticky-header { will-change: transform; transform: translateZ(0); backface-visibility: hidden; }
+
 .invert-logo {
   filter: brightness(0) invert(1);
 }
 
-/* Unified, single-tone KV banner (applies to all variants) */
-.kv-blue,
-.kv-orange,
-.kv-yellow,
-.kv-green,
-.kv-sand {
-  /* choose a single calm tone (brand blue) and a very subtle sheen */
+/* Brand color KV banners with SVG pattern overlays */
+.kv-blue {
   background-color: var(--brand-blue);
-  background-image: linear-gradient(rgba(255,255,255,.06), rgba(255,255,255,.06));
+  background-image: linear-gradient(rgba(155, 193, 223, .12), rgba(155, 193, 223, .12)), url('/assets/HID-GRAPHIC 02-LANGUAGE.svg'), url('/assets/HID-GRAPHIC 02-LANGUAGE.svg');
   background-repeat: no-repeat;
-  background-size: auto;
-  background-position: 0 0;
+  background-size: auto, 220px, 70px;
+  background-position: 0 0, 88% 25%, 65% 85%;
 }
+
+.kv-orange {
+  background-color: var(--brand-orange);
+  background-image: linear-gradient(rgba(233, 182, 157, .12), rgba(233, 182, 157, .12)), url('/assets/HID-GRAPHIC 01-ETHNICITY.svg'), url('/assets/HID-GRAPHIC 01-ETHNICITY.svg');
+  background-repeat: no-repeat;
+  background-size: auto, 215px, 68px;
+  background-position: 0 0, 85% 20%, 62% 82%;
+}
+
+.kv-yellow {
+  background-color: var(--brand-yellow);
+  background-image: linear-gradient(rgba(237, 178, 46, .12), rgba(237, 178, 46, .12)), url('/assets/HID-GRAPHIC 03-SOCIAL FABRIC.svg'), url('/assets/HID-GRAPHIC 03-SOCIAL FABRIC.svg');
+  background-repeat: no-repeat;
+  background-size: auto, 225px, 72px;
+  background-position: 0 0, 90% 28%, 68% 88%;
+}
+
+.kv-green {
+  background-color: var(--brand-green);
+  background-image: linear-gradient(rgba(169, 216, 171, .12), rgba(169, 216, 171, .12)), url('/assets/HID-GRAPHIC 04-RELIGION.svg'), url('/assets/HID-GRAPHIC 04-RELIGION.svg');
+  background-repeat: no-repeat;
+  background-size: auto, 218px, 69px;
+  background-position: 0 0, 87% 22%, 64% 84%;
+}
+
 .kv-sand {
-  background-color: #d8ae73;
-  background-image: linear-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1)), url(/assets/HID-GRAPHIC-05-CULTURE.png), url(/assets/HID-GRAPHIC-05-CULTURE.png), url(/assets/HID-GRAPHIC-05-CULTURE.png);
+  background-color: var(--brand-sand);
+  background-image: linear-gradient(rgba(232, 208, 174, .12), rgba(232, 208, 174, .12)), url('/assets/HID-GRAPHIC 05-CULTURE.svg'), url('/assets/HID-GRAPHIC 05-CULTURE.svg');
   background-repeat: no-repeat;
-  background-size: auto, 220px, 120px, 90px;
-  background-position: 0 0, 10% 78%, 90% 22%, 75% 75%;
+  background-size: auto, 222px, 71px;
+  background-position: 0 0, 89% 26%, 66% 86%;
 }
+
+.pattern-bg {
+  background-image: url('/assets/pattern.svg');
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center -280px; /* geser 40px ke atas */
+}
+
+
 /* Brand icon styles */
 .brand-icon {
   height: 44px;
@@ -93,83 +126,10 @@
 /* Reveal baseline: only hide when JS is active to avoid no-JS blank content */
 html.js-anim .reveal { opacity: 0; transform: translateY(6px); }
 
-/* Hover states for buttons and links */
-.bg-brand-blue {
-  background-color: #4d91c6;
-}
-
-.bg-brand-blue:hover {
-  background-color: #3d749e;
-}
-
-.bg-brand-green {
-  background-color: #6fbf73;
-}
-
-.bg-brand-green:hover {
-  background-color: #58985c;
-}
-
-.bg-brand-sand {
-  background-color: #d8ae73;
-}
-
-.bg-brand-sand:hover {
-  background-color: #b79361;
-}
-
-.bg-brand-orange {
-  background-color: #e87d50;
-}
-
-.bg-brand-orange:hover {
-  background-color: #c56a44;
-}
-
-.bg-brand-yellow {
-  background-color: #edb332;
-}
-
-.bg-brand-yellow:hover {
-  background-color: #c9982a;
-}
-
 /* Helper: white button -> brand blue on hover */
 .hover-brand-blue:hover {
-  background-color: #4d91c6; /* brand blue */
+  background-color: #4d91c6;
   color: #ffffff;
-}
-
-.text-brand-blue {
-  color: #4d91c6;
-}
-
-.text-brand-green {
-  color: #6fbf73;
-}
-
-.text-brand-sand {
-  color: #d8ae73;
-}
-
-.text-brand-orange {
-  color: #e87d50;
-}
-
-.text-brand-yellow {
-  color: #edb332;
-}
-
-.text-brand-off {
-  color: #f5f0e6;
-}
-
-.text-brand-ink {
-  color: #0f0f0f;
-}
-
-.bg-brand-off {
-  background-color: #f5f0e6;
 }
 
 /* Card styles with radius and shadow */
@@ -178,60 +138,4 @@ html.js-anim .reveal { opacity: 0; transform: translateY(6px); }
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   background-color: white;
   border: 1px solid var(--brand-off);
-}
-
-/* Section background styles */
-.bg-blue-pattern {
-  background-color: #4d91c6;
-  background-image:
-    linear-gradient(rgba(255,255,255,.08), rgba(255,255,255,.08)),
-    url('/assets/HID-GRAPHIC-02-LANGUAGE.png');
-  background-repeat: no-repeat;
-  background-size: auto, 220px;
-  background-position: 0 0, 8% 75%;
-  color: white;
-}
-
-.bg-orange-pattern {
-  background-color: #e87d50;
-  background-image:
-    linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)),
-    url('/assets/HID-GRAPHIC-01-ETHNICITY.png');
-  background-repeat: no-repeat;
-  background-size: auto, 220px;
-  background-position: 0 0, 12% 78%;
-  color: white;
-}
-
-.bg-yellow-pattern {
-  background-color: #edb332;
-  background-image:
-    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.12)),
-    url('/assets/HID-GRAPHIC-03-SOCIAL-FABRIC.png');
-  background-repeat: no-repeat;
-  background-size: auto, 210px;
-  background-position: 0 0, 10% 80%;
-  color: white;
-}
-
-.bg-green-pattern {
-  background-color: #6fbf73;
-  background-image:
-    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.12)),
-    url('/assets/HID-GRAPHIC-04-RELIGION.png');
-  background-repeat: no-repeat;
-  background-size: auto, 210px;
-  background-position: 0 0, 12% 78%;
-  color: white;
-}
-
-.bg-sand-pattern {
-  background-color: #d8ae73;
-  background-image:
-    linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)),
-    url('/assets/HID-GRAPHIC-05-CULTURE.png');
-  background-repeat: no-repeat;
-  background-size: auto, 220px;
-  background-position: 0 0, 10% 78%;
-  color: white;
 }

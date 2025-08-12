@@ -1,0 +1,202 @@
+---
+import KvBanner from './KvBanner.astro';
+import { readdir } from 'fs/promises';
+import path from 'path';
+
+// Baca semua file gambar dari folder gallery
+const galleryPath = path.join(process.cwd(), 'public', 'assets', 'gallery');
+let allImages = [];
+
+try {
+  const files = await readdir(galleryPath);
+  allImages = files
+    .filter(file => /\.(jpg|jpeg|png|webp)$/i.test(file))
+    .sort(); // Sort alphabetically
+} catch (error) {
+  console.warn('Gallery folder not found or empty:', error.message);
+}
+---
+
+<section id="gallery" class="pt-0">
+  <KvBanner color="yellow" title="Gallery" subtitle="Highlights from our events" />
+  <div class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 overlap-wrap pb-16">
+      <!-- Launch Event 1 August 2025 -->
+      <div class="p-6 rounded-2xl bg-white border border-gray-200">
+        <div class="text-xs font-semibold text-brand-yellow mb-1">LAUNCH EVENT</div>
+        <h3 class="font-semibold">1 August 2025</h3>
+        <div class="mt-4 grid gap-3" style={`grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));`}>
+          {allImages.map((image, index) => (
+            <div class="overflow-hidden rounded-lg cursor-pointer" data-lightbox="launch" data-full-src={`/assets/gallery/${image}`}>
+              <img 
+                loading="lazy"
+                src={`/assets/gallery/${image}`}
+                alt={`Launch Event photo ${index + 1}`}
+                class="w-full h-32 sm:h-36 object-cover transition-transform duration-300 ease-out hover:scale-105 thumbnail-img"
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+    <div class="relative max-w-5xl max-h-full">
+      <!-- Loading indicator -->
+      <div id="lightbox-loading" class="absolute inset-0 flex items-center justify-center">
+        <div class="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+      </div>
+      <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain opacity-0 transition-opacity duration-300" />
+      <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 transition-colors z-10">&times;</button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-10">&#8249;</button>
+      <button id="lightbox-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-gray-300 transition-colors z-10">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Optimized lightbox dengan lazy loading dan thumbnail system
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxLoading = document.getElementById('lightbox-loading');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    
+    if (!lightbox || !lightboxImg) return;
+    
+    let currentImages = [];
+    let currentIndex = 0;
+    
+    // Event delegation - 1 listener untuk semua gambar
+    document.addEventListener('click', (e) => {
+      const container = e.target.closest('[data-lightbox]');
+      if (!container) return;
+      
+      e.preventDefault();
+      const category = container.dataset.lightbox;
+      const allCategoryItems = document.querySelectorAll(`[data-lightbox="${category}"]`);
+      currentImages = Array.from(allCategoryItems);
+      currentIndex = Array.from(allCategoryItems).indexOf(container);
+      showLightbox();
+    });
+    
+    const preloadImage = (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    };
+    
+    const showLightbox = async () => {
+      const currentContainer = currentImages[currentIndex];
+      if (!currentContainer) return;
+      
+      // Show lightbox dan loading indicator
+      lightbox.classList.remove('hidden');
+      lightboxImg.style.opacity = '0';
+      lightboxLoading.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      try {
+        // Load full resolution image
+        const fullSrc = currentContainer.dataset.fullSrc;
+        const fullImg = await preloadImage(fullSrc);
+        
+        // Hide loading, show image
+        lightboxLoading.style.display = 'none';
+        lightboxImg.src = fullSrc;
+        lightboxImg.alt = currentContainer.querySelector('img').alt;
+        lightboxImg.style.opacity = '1';
+        
+        // Preload next dan previous images untuk smooth navigation
+        preloadAdjacent();
+      } catch (error) {
+        console.warn('Failed to load full resolution image:', error);
+        lightboxLoading.style.display = 'none';
+        // Fallback ke thumbnail
+        const thumbImg = currentContainer.querySelector('img');
+        lightboxImg.src = thumbImg.src;
+        lightboxImg.alt = thumbImg.alt;
+        lightboxImg.style.opacity = '1';
+      }
+    };
+    
+    const preloadAdjacent = () => {
+      // Preload next image
+      const nextIndex = (currentIndex + 1) % currentImages.length;
+      const nextContainer = currentImages[nextIndex];
+      if (nextContainer) {
+        preloadImage(nextContainer.dataset.fullSrc).catch(() => {});
+      }
+      
+      // Preload previous image
+      const prevIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      const prevContainer = currentImages[prevIndex];
+      if (prevContainer) {
+        preloadImage(prevContainer.dataset.fullSrc).catch(() => {});
+      }
+    };
+    
+    const hideLightbox = () => {
+      lightbox.classList.add('hidden');
+      lightboxImg.style.opacity = '0';
+      document.body.style.overflow = 'auto';
+    };
+    
+    const showNext = () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      showLightbox();
+    };
+    
+    const showPrev = () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      showLightbox();
+    };
+    
+    // Event listeners
+    closeBtn?.addEventListener('click', hideLightbox);
+    nextBtn?.addEventListener('click', showNext);
+    prevBtn?.addEventListener('click', showPrev);
+    
+    // Close on backdrop click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) hideLightbox();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') hideLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Optimize thumbnail loading */
+  .thumbnail-img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+  
+  /* Smooth lightbox animations */
+  #lightbox-img {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Loading spinner */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

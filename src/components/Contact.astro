@@ -1,26 +1,61 @@
 ---
+import KvBanner from './KvBanner.astro';
 ---
 
-<section id="contact" class="bg-white py-16 lg:py-20">
-  <div class="max-w-7xl mx-auto px-4 lg:px-6">
-    <h2 class="text-3xl font-bold mb-6">Contact & Resources</h2>
-    <div class="grid lg:grid-cols-2 gap-6">
-      <div class="bg-brand-off border border-brand-off rounded-2xl p-6">
-        <h3 class="font-semibold mb-3">Media & General Enquiries</h3>
-        <ul class="text-sm space-y-2">
-          <li><strong>Mr James Chan</strong> — jameschan@temasekfoundation.org.sg, +65 8157 1129</li>
-          <li><strong>Ms Zhuang Jielin</strong> — jielin@temasekfoundation.org.sg, +65 9734 3463</li>
-          <li><strong>Mr Mitra</strong> — secretariat@5pglobal.org, +62 821 4104 5314</li>
-          <li><strong>Mr D. S. Pamungkas</strong> — secretariat@5pglobal.org, +62 811 919 8334</li>
-        </ul>
-      </div>
-      <div class="bg-brand-off border border-brand-off rounded-2xl p-6">
-        <h3 id="guidelines" class="font-semibold mb-3">Resources</h3>
-        <ul class="text-sm space-y-2">
-          <li><a href="#" class="text-brand-blue hover:text-brand-blue-hover">Download Guidelines (PDF)</a></li>
-          <li><a href="#nominate" class="text-brand-blue hover:text-brand-blue-hover">Submit Nomination</a> — English‑only, include impact write‑up & materials.</li>
-          <li>Follow updates: <strong>@hid.award</strong></li>
-        </ul>
+<!-- Contact -->
+<section id="contact" class="pt-0">
+  <KvBanner color="orange" title="Contact" subtitle="Get in touch with our team for questions and inquiries." />
+  
+  <div class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6 overlap-wrap pb-16">
+      <div class="grid md:grid-cols-2 gap-6">
+        
+        <!-- Left Column -->
+        <div class="space-y-6">
+          <!-- Contact: Mr James Chan -->
+          <div class="p-6 rounded-2xl bg-white border border-gray-200">
+            <div class="text-xs font-semibold text-brand-orange mb-2">TEMASEK FOUNDATION</div>
+            <address class="not-italic text-sm leading-relaxed">
+              <div class="text-base font-semibold mb-3">Mr James Chan</div>
+              <div class="mb-2"><a href="mailto:jameschan@temasekfoundation.org.sg" class="text-brand-blue hover:text-brand-blueDark">jameschan@temasekfoundation.org.sg</a></div>
+              <div><a href="tel:+6581571129" class="text-brand-blue hover:text-brand-blueDark">+65 8157 1129</a></div>
+            </address>
+          </div>
+
+          <!-- Contact: Ms Zhuang Jielin -->
+          <div class="p-6 rounded-2xl bg-white border border-gray-200">
+            <div class="text-xs font-semibold text-brand-orange mb-2">TEMASEK FOUNDATION</div>
+            <address class="not-italic text-sm leading-relaxed">
+              <div class="text-base font-semibold mb-3">Ms Zhuang Jielin</div>
+              <div class="mb-2"><a href="mailto:jielin@temasekfoundation.org.sg" class="text-brand-blue hover:text-brand-blueDark">jielin@temasekfoundation.org.sg</a></div>
+              <div><a href="tel:+6597343463" class="text-brand-blue hover:text-brand-blueDark">+65 9734 3463</a></div>
+            </address>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-6">
+          <!-- Contact: Mr Mitra -->
+          <div class="p-6 rounded-2xl bg-white border border-gray-200">
+            <div class="text-xs font-semibold text-brand-orange mb-2">5P GLOBAL</div>
+            <address class="not-italic text-sm leading-relaxed">
+              <div class="text-base font-semibold mb-3">Mr Mitra</div>
+              <div class="mb-2"><a href="mailto:secretariat@5pglobal.org" class="text-brand-blue hover:text-brand-blueDark">secretariat@5pglobal.org</a></div>
+              <div><a href="tel:+6282141045314" class="text-brand-blue hover:text-brand-blueDark">+62 821 4104 5314</a></div>
+            </address>
+          </div>
+
+          <!-- Contact: Mr D. S. Pamungkas -->
+          <div class="p-6 rounded-2xl bg-white border border-gray-200">
+            <div class="text-xs font-semibold text-brand-orange mb-2">5P GLOBAL</div>
+            <address class="not-italic text-sm leading-relaxed">
+              <div class="text-base font-semibold mb-3">Mr D. S. Pamungkas</div>
+              <div class="mb-2"><a href="mailto:secretariat@5pglobal.org" class="text-brand-blue hover:text-brand-blueDark">secretariat@5pglobal.org</a></div>
+              <div><a href="tel:+628119198334" class="text-brand-blue hover:text-brand-blueDark">+62 811 919 8334</a></div>
+            </address>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

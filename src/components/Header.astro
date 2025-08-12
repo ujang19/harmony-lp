@@ -1,10 +1,10 @@
 ---
 ---
 
-<header class="bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 fixed w-full z-50 border-b border-brand-off/40">
+<header class="bg-white fixed w-full z-50 border-b border-brand-off/40 shadow-sm sticky-header">
   <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 lg:px-6">
     <div class="flex items-center gap-3">
-      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class="h-9 w-auto"/>
+      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class="h-12 w-auto"/>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="#about" class="hover:text-brand-blue">About</a>
@@ -13,18 +13,29 @@
       <a href="#participate" class="hover:text-brand-blue">How to Participate</a>
       <a href="#award" class="hover:text-brand-blue">Award & Recognition</a>
       <a href="#judges" class="hover:text-brand-blue">Judges & Patron</a>
-      <a href="#partners" class="hover:text-brand-blue">Partners</a>
-      <a href="#faq" class="hover:text-brand-blue">FAQ</a>
+      <a href="#gallery" class="hover:text-brand-blue">Gallery</a>
     </nav>
     <div class="flex items-center gap-3">
       <a href="#nominate" class="hidden md:inline-block bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-brand-blueDark focus:outline-none focus:ring-2 focus:ring-brand-blue">Submit Nomination</a>
       <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-brand-off/70" aria-label="Open Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+        <svg class="hb h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="currentColor" stroke-width=".8" fill="none" stroke-linecap="round" aria-hidden="true">
+          <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
+            <animate dur="0.2s" attributeName="d" values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7" fill="freeze" begin="start.begin" />
+            <animate dur="0.2s" attributeName="d" values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7" fill="freeze" begin="reverse.begin" />
+          </path>
+          <rect width="10" height="10" stroke="none">
+            <animate dur="2s" id="reverse" attributeName="width" begin="click" />
+          </rect>
+          <rect width="10" height="10" stroke="none">
+            <animate dur="0.001s" id="start" attributeName="width" values="10;0" fill="freeze" begin="click" />
+            <animate dur="0.001s" attributeName="width" values="0;10" fill="freeze" begin="reverse.begin" />
+          </rect>
+        </svg>
       </button>
     </div>
   </div>
   <!-- Mobile menu -->
-  <div id="mobileNav" class="md:hidden hidden border-t bg-white">
+  <div id="mobileNav" class="md:hidden hidden border-t bg-white text-brand-ink shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 grid gap-2 text-sm">
       <a href="#about" class="py-2">About</a>
       <a href="#eligibility" class="py-2">Eligibility</a>
@@ -32,8 +43,7 @@
       <a href="#participate" class="py-2">How to Participate</a>
       <a href="#award" class="py-2">Award & Recognition</a>
       <a href="#judges" class="py-2">Judges & Patron</a>
-      <a href="#partners" class="py-2">Partners</a>
-      <a href="#faq" class="py-2">FAQ</a>
+      <a href="#gallery" class="py-2">Gallery</a>
       <a href="#nominate" class="mt-2 bg-brand-blue text-white px-4 py-2 rounded-lg text-center">Submit Nomination</a>
     </div>
   </div>
@@ -43,5 +53,28 @@
   // Mobile menu toggle
   const btn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
-  if (btn) btn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+  if (btn) btn.addEventListener('click', () => {
+    const isHidden = mobileNav.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isHidden));
+    btn.setAttribute('aria-controls', 'mobileNav');
+
+    // Animate the hamburger icon using SMIL beginElement
+    const icon = btn.querySelector('svg.hb');
+    if (icon) {
+      const startAnim = icon.querySelector('animate#start');
+      const reverseAnim = icon.querySelector('animate#reverse');
+      try {
+        if (!isHidden) {
+          // Menu opened -> play to X
+          startAnim && startAnim.beginElement && startAnim.beginElement();
+        } else {
+          // Menu closed -> revert to hamburger
+          reverseAnim && reverseAnim.beginElement && reverseAnim.beginElement();
+        }
+      } catch (_) {
+        // Fallback: trigger a click on the svg to drive animations
+        icon.dispatchEvent(new Event('click', { bubbles: true }));
+      }
+    }
+  });
 </script>
