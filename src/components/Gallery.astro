@@ -23,11 +23,11 @@ images.sort((a, b) => (a.src < b.src ? -1 : a.src > b.src ? 1 : 0));
                 <Image
                   src={img}
                   alt={`Launch Event photo ${index + 1}`}
-                  widths={[200]}
-                  sizes="200px"
+                  widths={[400]}
+                  sizes="400px"
                   loading="lazy"
                   decoding="async"
-                  width={200}
+                  width={400}
                   height={144}
                   fetchpriority={index < 3 ? 'high' : 'low'}
                   class="gallery-thumb"
