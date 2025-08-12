@@ -1,10 +1,12 @@
 ---
+interface Props { logoHeight?: string }
+const { logoHeight = 'h-12' } = Astro.props as Props;
 ---
 
 <header class="bg-white fixed w-full z-50 border-b border-brand-off/40 shadow-sm sticky-header">
   <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 lg:px-6">
     <div class="flex items-center gap-3">
-      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class="h-12 w-auto"/>
+      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class={`${logoHeight} w-auto`}/>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="#about" class="hover:text-brand-blue">About</a>
