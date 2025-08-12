@@ -37,6 +37,7 @@ try {
                   decoding="async"
                   width="200"
                   height="144"
+                  fetchpriority={index < 3 ? "high" : "low"}
                 />
                 <div class="gallery-overlay">
                   <svg class="gallery-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -238,18 +239,14 @@ try {
     contain: layout style;
   }
   
-  /* Optimized gallery items */
+  /* Optimized gallery items - removed heavy transforms */
   .gallery-item {
     cursor: pointer;
     border-radius: 0.5rem;
     overflow: hidden;
-    contain: layout style paint;
-    will-change: transform;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .gallery-item:hover {
-    transform: translateY(-2px);
+    contain: layout style;
+    content-visibility: auto;
+    contain-intrinsic-size: 200px 150px;
   }
   
   .gallery-thumb-wrapper {
@@ -264,29 +261,25 @@ try {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    image-rendering: auto;
   }
   
-  .gallery-item:hover .gallery-thumb {
-    transform: scale(1.05);
-  }
-  
+  /* Lightweight overlay - no backdrop-filter */
   .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    backdrop-filter: blur(4px);
+    transition: opacity 0.15s ease;
+    pointer-events: none;
   }
   
   .gallery-item:hover .gallery-overlay {
     opacity: 1;
+    pointer-events: auto;
   }
   
   .gallery-icon {
@@ -360,8 +353,8 @@ try {
     font-size: 1.5rem;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    backdrop-filter: blur(4px);
-    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.35);
   }
   
   .lightbox-btn:hover {
