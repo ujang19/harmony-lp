@@ -1,21 +1,11 @@
 ---
 import KvBanner from './KvBanner.astro';
 import { Image } from 'astro:assets';
-import { readdir } from 'fs/promises';
-import path from 'path';
 
-// Baca semua file gambar dari folder gallery
-const galleryPath = path.join(process.cwd(), 'public', 'assets', 'gallery');
-let allImages = [];
-
-try {
-  const files = await readdir(galleryPath);
-  allImages = files
-    .filter(file => /\.(jpg|jpeg|png|webp)$/i.test(file))
-    .sort(); // Sort alphabetically
-} catch (error) {
-  console.warn('Gallery folder not found or empty:', error.message);
-}
+// Import all images from src/assets/gallery for astro:assets processing
+const images = Object.values(import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true }));
+// Sort by URL/name for stable order
+images.sort((a, b) => (a.src < b.src ? -1 : a.src > b.src ? 1 : 0));
 ---
 
 <section id="gallery" class="pt-0">
@@ -27,11 +17,11 @@ try {
         <div class="text-xs font-semibold text-brand-yellow mb-1">LAUNCH EVENT</div>
         <h3 class="font-semibold">1 August 2025</h3>
         <div class="mt-4 gallery-grid">
-          {allImages.map((image, index) => (
-            <div class="gallery-item" data-lightbox="launch" data-full-src={`/assets/gallery/${image}`}>
+          {images.map((img, index) => (
+            <div class="gallery-item" data-lightbox="launch" data-full-src={img.src}>
               <div class="gallery-thumb-wrapper">
                 <Image
-                  src={`/assets/gallery/${image}`}
+                  src={img}
                   alt={`Launch Event photo ${index + 1}`}
                   widths={[200, 400, 600]}
                   sizes="(max-width: 768px) 45vw, 200px"
@@ -232,8 +222,6 @@ try {
       init();
     }
   })();
-
-
 </script>
 
 <style>
