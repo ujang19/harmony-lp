@@ -31,9 +31,9 @@ try {
               <div class="gallery-thumb-wrapper">
                 <img 
                   loading="lazy"
-                  src={`/assets/gallery/${image}`}
+                  data-src={`/assets/gallery/${image}`}
                   alt={`Launch Event photo ${index + 1}`}
-                  class="gallery-thumb"
+                  class="gallery-thumb gallery-lazy"
                   decoding="async"
                   width="200"
                   height="144"
@@ -227,6 +227,55 @@ try {
     } else {
       init();
     }
+  })();
+
+  // Lazy load gallery thumbnails only when near viewport
+  (() => {
+    const section = document.getElementById('gallery');
+    if (!section) return;
+
+    const lazyImgs = new Set();
+    const collectLazy = () => {
+      section.querySelectorAll('img.gallery-lazy[data-src]').forEach(img => lazyImgs.add(img));
+    };
+    collectLazy();
+
+    const loadImg = (img) => {
+      if (!img || img.dataset.loaded) return;
+      const src = img.getAttribute('data-src');
+      if (!src) return;
+      img.src = src;
+      img.dataset.loaded = '1';
+      img.removeAttribute('data-src');
+      img.classList.remove('gallery-lazy');
+    };
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        const img = entry.target;
+        if (entry.isIntersecting) {
+          loadImg(img);
+          obs.unobserve(img);
+          lazyImgs.delete(img);
+        }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+    lazyImgs.forEach(img => io.observe(img));
+
+    // In case of dynamic updates
+    const mo = new MutationObserver(() => {
+      collectLazy();
+      lazyImgs.forEach(img => io.observe(img));
+    });
+    mo.observe(section, { childList: true, subtree: true });
+
+    // Cleanup on page hide
+    window.addEventListener('pagehide', () => {
+      io.disconnect();
+      mo.disconnect();
+      lazyImgs.clear();
+    });
   })();
 </script>
 
