@@ -3,7 +3,7 @@ import KvBanner from './KvBanner.astro';
 import { Image } from 'astro:assets';
 
 // Import all images from src/assets/gallery for astro:assets processing
-const images = Object.values(import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true }));
+const images = Object.values(import.meta.glob('../assets/gallery/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }));
 // Sort by URL/name for stable order
 images.sort((a, b) => (a.src < b.src ? -1 : a.src > b.src ? 1 : 0));
 ---
@@ -23,8 +23,8 @@ images.sort((a, b) => (a.src < b.src ? -1 : a.src > b.src ? 1 : 0));
                 <Image
                   src={img}
                   alt={`Launch Event photo ${index + 1}`}
-                  widths={[200, 400, 600]}
-                  sizes="(max-width: 768px) 45vw, 200px"
+                  widths={[200]}
+                  sizes="200px"
                   loading="lazy"
                   decoding="async"
                   width={200}
