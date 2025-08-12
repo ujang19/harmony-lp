@@ -139,3 +139,6 @@ html.js-anim .reveal { opacity: 0; transform: translateY(6px); }
   background-color: white;
   border: 1px solid var(--brand-off);
 }
+
+/* Shimmer overlay helper (base safety) */
+.shimmer { display: block; border-radius: inherit; }
