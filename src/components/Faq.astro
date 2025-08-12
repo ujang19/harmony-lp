@@ -32,14 +32,22 @@ import KvBanner from './KvBanner.astro';
   </div>
 </section>
 
-<script>
-  // Accordion toggle
-  document.querySelectorAll('.accordion-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const panel = btn.parentElement.nextElementSibling || btn.parentElement.querySelector(':scope + div');
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      if (panel) panel.classList.toggle('hidden');
+<script is:inline>
+  // Attach accordion listeners after DOM is ready
+  const attachAccordions = () => {
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      // prevent duplicate listeners during HMR
+      btn.__hidBound || (btn.__hidBound = true, btn.addEventListener('click', () => {
+        const panel = btn.nextElementSibling;
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        if (panel) panel.classList.toggle('hidden');
+      }));
     });
-  });
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachAccordions, { once: true });
+  } else {
+    attachAccordions();
+  }
 </script>

@@ -28,6 +28,18 @@ import Footer from '../components/Footer.astro';
     <meta property="og:type" content="website"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <link rel="stylesheet" href="/brand.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/HID-LOGO-COLOR.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/HID-LOGO-COLOR.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/HID-LOGO-COLOR.png" />
+  <meta name="theme-color" content="#4d91c6" />
+  <!-- GSAP + ScrollTrigger (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <!-- Lenis smooth scroll (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+  <!-- Site animation bootstrap -->
+  <script src="/gsap-init.js" defer></script>
   </head>
   <body class="font-sans text-brand-ink">
     <Header />
