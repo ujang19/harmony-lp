@@ -1,13 +1,30 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props { logoHeight?: string }
 const { logoHeight = 'h-14' } = Astro.props as Props;
+
+// Import langsung dari src/assets (Astro akan optimasi otomatis)
+import logo from '../assets/HID-LOGO-COLOR.png';
 ---
 
 <header class="bg-white fixed w-full z-50 border-b border-brand-off/40 shadow-sm sticky-header">
   <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-4 lg:px-6">
     <div class="flex items-center gap-3">
-      <img src="/assets/HID-LOGO-COLOR.png" alt="Harmony in Diversity Award Logo" class={`${logoHeight} w-auto`}/>
+<Image
+  src={logo}
+  alt="Harmony in Diversity Award Logo"
+  class={`${logoHeight} w-auto`}
+  widths={[128,160,192,224,256]}
+  sizes="192px"
+  format="png"   // <— ini kuncinya
+  loading="eager"
+  decoding="async"
+  fetchpriority="high"
+/>
+      <span class="sr-only">Harmony in Diversity Award</span>
     </div>
+
     <nav class="hidden md:flex items-center gap-6 text-sm">
       <a href="#about" class="hover:text-brand-blue">About</a>
       <a href="#eligibility" class="hover:text-brand-blue">Eligibility</a>
@@ -17,9 +34,12 @@ const { logoHeight = 'h-14' } = Astro.props as Props;
       <a href="#judges" class="hover:text-brand-blue">Judges & Patron</a>
       <a href="#gallery" class="hover:text-brand-blue">Gallery</a>
     </nav>
+
     <div class="flex items-center gap-3">
-      <a href="#nominate" class="hidden md:inline-block bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-brand-blueDark focus:outline-none focus:ring-2 focus:ring-brand-blue">Submit Nomination</a>
-      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-brand-off/70" aria-label="Open Menu">
+      <a href="#nominate" class="hidden md:inline-block bg-brand-blue text-white px-4 py-2 rounded-lg hover:bg-brand-blueDark focus:outline-none focus:ring-2 focus:ring-brand-blue">
+        Submit Nomination
+      </a>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-brand-off/70" aria-label="Open Menu" aria-controls="mobileNav" aria-expanded="false">
         <svg class="hb h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="currentColor" stroke-width=".8" fill="none" stroke-linecap="round" aria-hidden="true">
           <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
             <animate dur="0.2s" attributeName="d" values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7" fill="freeze" begin="start.begin" />
@@ -36,6 +56,7 @@ const { logoHeight = 'h-14' } = Astro.props as Props;
       </button>
     </div>
   </div>
+
   <!-- Mobile menu -->
   <div id="mobileNav" class="md:hidden hidden border-t bg-white text-brand-ink shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 grid gap-2 text-sm">
@@ -58,7 +79,6 @@ const { logoHeight = 'h-14' } = Astro.props as Props;
   if (btn) btn.addEventListener('click', () => {
     const isHidden = mobileNav.classList.toggle('hidden');
     btn.setAttribute('aria-expanded', String(!isHidden));
-    btn.setAttribute('aria-controls', 'mobileNav');
 
     // Animate the hamburger icon using SMIL beginElement
     const icon = btn.querySelector('svg.hb');
