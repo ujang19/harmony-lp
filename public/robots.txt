@@ -1,0 +1,13 @@
+# robots.txt for Harmony in Diversity Award
+# Update the Sitemap URL to your production domain before going live.
+
+User-agent: *
+Allow: /
+
+# Block internal or non-public paths (adjust as needed)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /drafts/
+
+# Point crawlers to your sitemap
+Sitemap: https://harmonyindiversityaward.com/sitemap.xml
