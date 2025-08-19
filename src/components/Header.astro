@@ -15,9 +15,9 @@ import logo from '../assets/HID-LOGO-COLOR.png';
   src={logo}
   alt="Harmony in Diversity Award Logo"
   class={`${logoHeight} w-auto`}
-  widths={[192]}
-  sizes="192px"
-  format="png"   // <— ini kuncinya
+  widths={[128, 192]}
+  sizes="(min-width: 768px) 192px, 128px"
+  format="png"
   loading="eager"
   decoding="async"
   fetchpriority="high"
